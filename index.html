@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infosys New Employee Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Infosys New Employee Registration</h1>
+    <p>This page accepts all basic mandatory information about the new employee.</p>
+
+    <form id="employeeForm" novalidate>
+        <table>
+            <thead>
+                <tr>
+                    <th>Business Data</th>
+                    <th>HTML Control</th>
+                    <th>Accept Pattern</th>
+                    <th>Length of Tip Enter</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Full Name</td>
+                    <td><label for="fullName">Full Name:</label><input type="text" id="fullName" name="fullName"
+                            required pattern="[A-Za-z\s]+" title="Enter your full name (letters and spaces only)"></td>
+                    <td>A-z</td>
+                    <td>Enter your full name</td>
+                </tr>
+                <tr>
+                    <td>Gender</td>
+                    <td>
+                        <label>Gender:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="male" name="gender" value="Male" required>
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
+                        </div>
+                    </td>
+                    <td>Male/Female</td>
+                    <td>Select your gender</td>
+                </tr>
+                <tr>
+                    <td>Aadhaar Number</td>
+                    <td><label for="aadhaar">Aadhaar Number:</label><input type="text" id="aadhaar" name="aadhaar"
+                            required pattern="\d{12}" maxlength="12" title="Enter 12 digit Aadhaar number"></td>
+                    <td>0-9</td>
+                    <td>12 digit Aadhaar</td>
+                </tr>
+                <tr>
+                    <td>PAN Number</td>
+                    <td><label for="pan">PAN Number:</label><input type="text" id="pan" name="pan" required
+                            pattern="[A-Z]{5}\d{4}[A-Z]{1}" maxlength="10" title="Enter PAN (e.g., ABCDE1234F)"
+                            uppercase></td>
+                    <td>Alphabets+Number</td>
+                    <td>10 digit PAN</td>
+                </tr>
+                <tr>
+                    <td>Address</td>
+                    <td><label for="address">Address:</label><textarea id="address" name="address" rows="4" required
+                            title="Enter full address"></textarea></td>
+                    <td>All address with</td>
+                    <td>Enter full address</td>
+                </tr>
+                <tr>
+                    <td>Pin Code</td>
+                    <td><label for="pincode">Pin Code:</label><input type="text" id="pincode" name="pincode" required
+                            pattern="\d{6}" maxlength="6" title="Enter 6 digit pin code"></td>
+                    <td>0-9</td>
+                    <td>6 digit pincode</td>
+                </tr>
+                <tr>
+                    <td>Email ID</td>
+                    <td><label for="email">Email ID:</label><input type="email" id="email" name="email" required
+                            title="Enter valid email"></td>
+                    <td>0-9 @ etc.</td>
+                    <td>Enter valid email</td>
+                </tr>
+                <tr>
+                    <td>University Graduate</td>
+                    <td><label for="graduationDate">University Graduation Date:</label><input type="date"
+                            id="graduationDate" name="graduationDate" required></td>
+                    <td>Date</td>
+                    <td>Select graduation date</td>
+                </tr>
+                <tr>
+                    <td>Birth Date</td>
+                    <td><label for="birthDate">Birth Date:</label><input type="date" id="birthDate" name="birthDate"
+                            required></td>
+                    <td>Date</td>
+                    <td>Select birth date</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <button type="submit">Register Employee</button>
+    </form>
+
+    <script>
+        // Auto-uppercase PAN input
+        document.getElementById('pan').addEventListener('input', function (e) {
+            this.value = this.value.toUpperCase();
+        });
+
+        // Form submit handler (demo - shows data in alert)
+        document.getElementById('employeeForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            if (this.checkValidity()) {
+                alert('Registration data:\n' + new FormData(this));
+            } else {
+                alert('Please fill all fields correctly.');
+            }
+        });
+    </script>
+</body>
+
+</html>
