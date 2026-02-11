@@ -1,78 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Infosys New Employee Registration with Validation</title>
+    <title>Infosys New Employee Registration</title>
     <style>
-        body { 
-            font-family: Arial, sans-serif; 
-            max-width: 700px; 
-            margin: 50px auto; 
-            padding: 20px; 
-            background-color: #f4f4f4;
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
         }
-        h1 { color: #333; text-align: center; }
-        form { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
-        label { display: block; margin-top: 15px; font-weight: bold; color: #555; }
-        input, textarea, select { 
-            width: 100%; 
-            padding: 10px; 
-            margin-top: 5px; 
-            box-sizing: border-box; 
-            border: 1px solid #ccc; 
-            border-radius: 5px;
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
         }
-        input:focus, textarea:focus { border-color: #007bff; outline: none; }
-        .radio-group { 
-            display: flex; 
-            gap: 20px; 
-            margin-top: 5px; 
-            flex-wrap: wrap;
-        }
-        .radio-group input[type="radio"] { width: auto; }
-        .radio-group label { font-weight: normal; margin: 0; }
-        button { 
-            background-color: #28a745; 
-            color: white; 
-            padding: 12px 30px; 
-            border: none; 
-            border-radius: 5px; 
-            cursor: pointer; 
-            margin-top: 20px; 
-            font-size: 16px;
+
+        input,
+        textarea,
+        select {
             width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            box-sizing: border-box;
         }
-        button:hover:not(:disabled) { background-color: #218838; }
-        button:disabled { background-color: #6c757d; cursor: not-allowed; }
-        .error { color: #dc3545; font-size: 0.9em; margin-top: 5px; display: none; }
-        .valid { color: #28a745; font-size: 0.9em; margin-top: 5px; display: none; }
-        table { 
-            width: 100%; 
-            border-collapse: collapse; 
-            margin-bottom: 20px; 
-            background: white;
-            border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            margin-top: 5px;
         }
-        th, td { 
-            padding: 12px; 
-            text-align: left; 
-            border-bottom: 1px solid #ddd; 
+
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
         }
-        th { background-color: #007bff; color: white; }
-        tr:hover { background-color: #f8f9fa; }
-        @media (max-width: 600px) { 
-            body { padding: 10px; } 
-            .radio-group { flex-direction: column; gap: 10px; }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        th,
+        td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
     </style>
 </head>
+
 <body>
     <h1>Infosys New Employee Registration</h1>
-    <p style="text-align: center; color: #666;">This page accepts all basic mandatory information about the new employee with client-side validation.</p>
-    
+    <p>This page accepts all basic mandatory information about the new employee.</p>
+
     <form id="employeeForm" novalidate>
         <table>
             <thead>
@@ -80,213 +73,103 @@
                     <th>Business Data</th>
                     <th>HTML Control</th>
                     <th>Accept Pattern</th>
-                    <th>JavaScript Validation</th>
+                    <th>Length of Tip Enter</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
                     <td>Full Name</td>
-                    <td><label for="fullName">Full Name:</label><input type="text" id="fullName" name="fullName" required><span class="error" id="fullNameError">Only alphabets and spaces allowed</span><span class="valid" id="fullNameValid">Valid</span></td>
+                    <td><label for="fullName">Full Name:</label><input type="text" id="fullName" name="fullName"
+                            required pattern="[A-Za-z\s]+" title="Enter your full name (letters and spaces only)"></td>
                     <td>A-z</td>
-                    <td>Only alphabets and spaces</td>
+                    <td>Enter your full name</td>
                 </tr>
                 <tr>
                     <td>Gender</td>
                     <td>
                         <label>Gender:</label>
                         <div class="radio-group">
-                            <input type="radio" id="male" name="gender" value="Male"><label for="male">Male</label>
-                            <input type="radio" id="female" name="gender" value="Female"><label for="female">Female</label>
+                            <input type="radio" id="male" name="gender" value="Male" required>
+                            <label for="male">Male</label>
+                            <input type="radio" id="female" name="gender" value="Female">
+                            <label for="female">Female</label>
                         </div>
-                        <span class="error" id="genderError">One option must be selected</span><span class="valid" id="genderValid">Valid</span>
                     </td>
                     <td>Male/Female</td>
-                    <td>One option must be selected</td>
+                    <td>Select your gender</td>
                 </tr>
                 <tr>
                     <td>Aadhaar Number</td>
-                    <td><label for="aadhaar">Aadhaar Number:</label><input type="text" id="aadhaar" name="aadhaar" maxlength="12"><span class="error" id="aadhaarError">Exactly 12 digits required</span><span class="valid" id="aadhaarValid">Valid</span></td>
+                    <td><label for="aadhaar">Aadhaar Number:</label><input type="text" id="aadhaar" name="aadhaar"
+                            required pattern="\d{12}" maxlength="12" title="Enter 12 digit Aadhaar number"></td>
                     <td>0-9</td>
-                    <td>Exactly 12 digits</td>
+                    <td>12 digit Aadhaar</td>
                 </tr>
                 <tr>
                     <td>PAN Number</td>
-                    <td><label for="pan">PAN Number:</label><input type="text" id="pan" name="pan" maxlength="10"><span class="error" id="panError">5 letters + 4 digits + 1 letter (e.g., ABCDE1234F)</span><span class="valid" id="panValid">Valid</span></td>
+                    <td><label for="pan">PAN Number:</label><input type="text" id="pan" name="pan" required
+                            pattern="[A-Z]{5}\d{4}[A-Z]{1}" maxlength="10" title="Enter PAN (e.g., ABCDE1234F)"
+                            uppercase></td>
                     <td>Alphabets+Number</td>
-                    <td>Format: 5 letters+4 digits+1</td>
+                    <td>10 digit PAN</td>
                 </tr>
                 <tr>
                     <td>Address</td>
-                    <td><label for="address">Address:</label><textarea id="address" name="address" rows="4" minlength="10"></textarea><span class="error" id="addressError">Minimum 10 characters</span><span class="valid" id="addressValid">Valid</span></td>
+                    <td><label for="address">Address:</label><textarea id="address" name="address" rows="4" required
+                            title="Enter full address"></textarea></td>
                     <td>All address with</td>
-                    <td>Minimum 10 characters</td>
+                    <td>Enter full address</td>
                 </tr>
                 <tr>
-                    <td>Pin Code Number</td>
-                    <td><label for="pincode">Pin Code:</label><input type="text" id="pincode" name="pincode" maxlength="6"><span class="error" id="pincodeError">Exactly 6 digits</span><span class="valid" id="pincodeValid">Valid</span></td>
+                    <td>Pin Code</td>
+                    <td><label for="pincode">Pin Code:</label><input type="text" id="pincode" name="pincode" required
+                            pattern="\d{6}" maxlength="6" title="Enter 6 digit pin code"></td>
                     <td>0-9</td>
-                    <td>Exactly 6 digits</td>
+                    <td>6 digit pincode</td>
                 </tr>
                 <tr>
-                    <td>University Name</td>
-                    <td><label for="university">University Name:</label><input type="text" id="university" name="university"><span class="error" id="universityError">Alphabets and spaces only</span><span class="valid" id="universityValid">Valid</span></td>
-                    <td>Text</td>
-                    <td>Alphabets and spaces</td>
+                    <td>Email ID</td>
+                    <td><label for="email">Email ID:</label><input type="email" id="email" name="email" required
+                            title="Enter valid email"></td>
+                    <td>0-9 @ etc.</td>
+                    <td>Enter valid email</td>
                 </tr>
                 <tr>
-                    <td>University Graduation</td>
-                    <td><label for="graduationDate">Graduation Date:</label><input type="date" id="graduationDate" name="graduationDate"><span class="error" id="graduationDateError">Between 2000 and current year</span><span class="valid" id="graduationDateValid">Valid</span></td>
+                    <td>University Graduate</td>
+                    <td><label for="graduationDate">University Graduation Date:</label><input type="date"
+                            id="graduationDate" name="graduationDate" required></td>
                     <td>Date</td>
-                    <td>Between 2000 and current</td>
+                    <td>Select graduation date</td>
                 </tr>
                 <tr>
-                    <td>Salary</td>
-                    <td><label for="salary">Salary:</label><input type="text" id="salary" name="salary"><span class="error" id="salaryError">Numbers only</span><span class="valid" id="salaryValid">Valid</span></td>
-                    <td>Text</td>
-                    <td>Numbers only current</td>
-                </tr>
-                <tr>
-                    <td>Date of Birth</td>
-                    <td><label for="birthDate">Birth Date:</label><input type="date" id="birthDate" name="birthDate"><span class="error" id="birthDateError">User must be 18+</span><span class="valid" id="birthDateValid">Valid</span></td>
+                    <td>Birth Date</td>
+                    <td><label for="birthDate">Birth Date:</label><input type="date" id="birthDate" name="birthDate"
+                            required></td>
                     <td>Date</td>
-                    <td>User must be 18+</td>
+                    <td>Select birth date</td>
                 </tr>
             </tbody>
         </table>
-        
-        <button type="submit" id="submitBtn" disabled>Submit (All fields valid)</button>
+
+        <button type="submit">Register Employee</button>
     </form>
 
     <script>
-        const form = document.getElementById('employeeForm');
-        const submitBtn = document.getElementById('submitBtn');
-        const currentYear = new Date().getFullYear();
-
-        // Validation functions
-        function validateFullName(value) {
-            return /^[A-Za-z\s]+$/.test(value) && value.trim().length > 0;
-        }
-
-        function validateGender() {
-            return document.querySelector('input[name="gender"]:checked') !== null;
-        }
-
-        function validateAadhaar(value) {
-            return /^\d{12}$/.test(value);
-        }
-
-        function validatePAN(value) {
-            return /^[A-Z]{5}\d{4}[A-Z]{1}$/.test(value.toUpperCase());
-        }
-
-        function validateAddress(value) {
-            return value.trim().length >= 10;
-        }
-
-        function validatePincode(value) {
-            return /^\d{6}$/.test(value);
-        }
-
-        function validateUniversity(value) {
-            return /^[A-Za-z\s]+$/.test(value) && value.trim().length > 0;
-        }
-
-        function validateGraduationDate(value) {
-            const date = new Date(value);
-            const year = date.getFullYear();
-            return year >= 2000 && year <= currentYear;
-        }
-
-        function validateSalary(value) {
-            return /^\d+$/.test(value) && parseInt(value) > 0;
-        }
-
-        function validateBirthDate(value) {
-            const birthDate = new Date(value);
-            const age = currentYear - birthDate.getFullYear();
-            const monthDiff = currentYear - birthDate.getFullYear() * 12 + (new Date().getMonth() - birthDate.getMonth());
-            return age >= 18 || (age === 17 && monthDiff >= 12);
-        }
-
-        // Real-time validation
-        ['fullName', 'aadhaar', 'pan', 'address', 'pincode', 'university', 'salary'].forEach(id => {
-            const input = document.getElementById(id);
-            const error = document.getElementById(id + 'Error');
-            const valid = document.getElementById(id + 'Valid');
-            input.addEventListener('input', () => {
-                let isValid = false;
-                switch(id) {
-                    case 'fullName': isValid = validateFullName(input.value); break;
-                    case 'aadhaar': isValid = validateAadhaar(input.value); break;
-                    case 'pan': 
-                        input.value = input.value.toUpperCase();
-                        isValid = validatePAN(input.value); 
-                        break;
-                    case 'address': isValid = validateAddress(input.value); break;
-                    case 'pincode': isValid = validatePincode(input.value); break;
-                    case 'university': isValid = validateUniversity(input.value); break;
-                    case 'salary': isValid = validateSalary(input.value); break;
-                }
-                error.style.display = isValid ? 'none' : 'block';
-                valid.style.display = isValid ? 'block' : 'none';
-                checkFormValidity();
-            });
+        // Auto-uppercase PAN input
+        document.getElementById('pan').addEventListener('input', function (e) {
+            this.value = this.value.toUpperCase();
         });
 
-        ['graduationDate', 'birthDate'].forEach(id => {
-            const input = document.getElementById(id);
-            const error = document.getElementById(id + 'Error');
-            const valid = document.getElementById(id + 'Valid');
-            input.addEventListener('change', () => {
-                let isValid = false;
-                if (id === 'graduationDate') {
-                    isValid = input.value && validateGraduationDate(input.value);
-                } else {
-                    isValid = input.value && validateBirthDate(input.value);
-                }
-                error.style.display = isValid ? 'none' : 'block';
-                valid.style.display = isValid ? 'block' : 'none';
-                checkFormValidity();
-            });
-        });
-
-        document.querySelectorAll('input[name="gender"]').forEach(radio => {
-            radio.addEventListener('change', () => {
-                const isValid = validateGender();
-                document.getElementById('genderError').style.display = isValid ? 'none' : 'block';
-                document.getElementById('genderValid').style.display = isValid ? 'block' : 'none';
-                checkFormValidity();
-            });
-        });
-
-        function checkFormValidity() {
-            const validations = [
-                validateFullName(document.getElementById('fullName').value),
-                validateGender(),
-                validateAadhaar(document.getElementById('aadhaar').value),
-                validatePAN(document.getElementById('pan').value),
-                validateAddress(document.getElementById('address').value),
-                validatePincode(document.getElementById('pincode').value),
-                validateUniversity(document.getElementById('university').value),
-                document.getElementById('graduationDate').value && validateGraduationDate(document.getElementById('graduationDate').value),
-                validateSalary(document.getElementById('salary').value),
-                document.getElementById('birthDate').value && validateBirthDate(document.getElementById('birthDate').value)
-            ];
-            submitBtn.disabled = !validations.every(v => v);
-        }
-
-        // Form submit
-        form.addEventListener('submit', (e) => {
+        // Form submit handler (demo - shows data in alert)
+        document.getElementById('employeeForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            if (!submitBtn.disabled) {
-                const formData = new FormData(form);
-                alert('All validations passed! Form submitted successfully.\n\n' + 
-                      Array.from(formData.entries()).map(([k,v]) => `${k}: ${v}`).join('\n'));
-                // Here: send to server
+            if (this.checkValidity()) {
+                alert('Registration data:\n' + new FormData(this));
             } else {
-                alert('Please correct all errors before submitting.');
+                alert('Please fill all fields correctly.');
             }
         });
     </script>
 </body>
+
 </html>
